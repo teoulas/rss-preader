@@ -2,11 +2,23 @@ import { h, Component } from 'preact';
 import List from 'preact-material-components/List';
 import 'preact-material-components/List/style.css';
 import OPMLUploader from '../../components/opml_uploader';
+import Button from 'preact-material-components/Button';
 
 export default class FeedSources extends Component {
   render(props, state) {
     return (
       <div>
+        {props.sources.length == 0 ? this.emptyList() : this.populatedList(props.sources)}
+        <OPMLUploader appendSources={props.appendSources} />
+        <Button ripple onClick={props.clearSources}>
+          Clear all feeds
+        </Button>
+      </div>
+    );
+  }
+
+  emptyList() {
+    return (
       <List two-line dense>
         <List.Item>
           <List.ItemGraphic>info</List.ItemGraphic>
@@ -16,9 +28,15 @@ export default class FeedSources extends Component {
           </List.TextContainer>
         </List.Item>
       </List>
+    );
+  }
+
+  populatedList(items) {
+    return (
       <List two-line dense>
-      {(props.sources.map((item) =>
+      {(items.map((item) =>
         <List.Item>
+          <List.ItemGraphic>rss_feed</List.ItemGraphic>
           <List.TextContainer>
             <List.PrimaryText>{item.name}</List.PrimaryText>
             <List.SecondaryText>{item.url}</List.SecondaryText>
@@ -26,8 +44,6 @@ export default class FeedSources extends Component {
         </List.Item>
       ))}
       </List>
-      <OPMLUploader appendSources={props.appendSources} />
-      </div>
     );
   }
 }

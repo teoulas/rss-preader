@@ -32,9 +32,6 @@ export default class Header extends Component {
 		this.closeDrawer();
 	};
 
-	goHome = this.linkTo('/');
-	goToMyProfile = this.linkTo('/profile');
-
 	toggleDarkTheme = () => {
 		this.setState(
 			{
@@ -60,7 +57,7 @@ export default class Header extends Component {
 							<Toolbar.Icon menu onClick={this.openDrawer}>
 								menu
 							</Toolbar.Icon>
-							<Toolbar.Title>Preact app</Toolbar.Title>
+							<Toolbar.Title>RSS PReader</Toolbar.Title>
 						</Toolbar.Section>
 						<Toolbar.Section align-end onClick={this.openSettings}>
 							<Toolbar.Icon>settings</Toolbar.Icon>
@@ -69,13 +66,17 @@ export default class Header extends Component {
 				</Toolbar>
 				<Drawer.TemporaryDrawer ref={this.drawerRef}>
 					<Drawer.TemporaryDrawerContent>
-						<Drawer.DrawerItem onClick={this.goHome}>
+						<Drawer.DrawerItem onClick={this.linkTo('/')}>
 							<List.ItemGraphic>home</List.ItemGraphic>
 							Home
 						</Drawer.DrawerItem>
-						<Drawer.DrawerItem onClick={this.goToMyProfile}>
-							<List.ItemGraphic>account_circle</List.ItemGraphic>
-							Profile
+						<Drawer.DrawerItem onClick={this.linkTo('/feed_sources')}>
+							<List.ItemGraphic>rss_feed</List.ItemGraphic>
+							Feed Sources
+						</Drawer.DrawerItem>
+						<Drawer.DrawerItem onClick={this.linkTo('/cloud_backups')}>
+							<List.ItemGraphic>backup</List.ItemGraphic>
+							Cloud Backups
 						</Drawer.DrawerItem>
 					</Drawer.TemporaryDrawerContent>
 				</Drawer.TemporaryDrawer>

@@ -28,7 +28,7 @@ export default class OPMLUploader extends Component {
     return (
       <div>
         <Button ripple raised onClick={this.browseFiles}>
-          Import sources from OPML &hellip;
+          Import feeds from OPML &hellip;
         </Button>
         <input type="file" accept=".xml,.opml" onChange={this.parseOPML}
           ref={(el) => this.fileInput = el} />
