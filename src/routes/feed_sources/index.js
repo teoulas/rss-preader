@@ -1,5 +1,6 @@
 import { h, Component } from 'preact';
 import List from 'preact-material-components/List';
+import Icon from 'preact-material-components/Icon';
 import 'preact-material-components/List/style.css';
 import OPMLUploader from '../../components/opml_uploader';
 import Button from 'preact-material-components/Button';
@@ -41,6 +42,11 @@ export default class FeedSources extends Component {
             <List.PrimaryText>{item.name}</List.PrimaryText>
             <List.SecondaryText>{item.url}</List.SecondaryText>
           </List.TextContainer>
+          <List.ItemMeta>
+            <Button onClick={() => this.props.removeSource(item)}>
+              <Icon>delete</Icon>
+            </Button>
+          </List.ItemMeta>
         </List.Item>
       ))}
       </List>

@@ -13,85 +13,85 @@ import 'preact-material-components/Toolbar/style.css';
 // import style from './style';
 
 export default class Header extends Component {
-	closeDrawer() {
-		this.drawer.MDComponent.open = false;
-		this.state = {
-			darkThemeEnabled: false
-		};
-	}
+  closeDrawer() {
+    this.drawer.MDComponent.open = false;
+    this.state = {
+      darkThemeEnabled: false
+    };
+  }
 
-	openDrawer = () => (this.drawer.MDComponent.open = true);
+  openDrawer = () => (this.drawer.MDComponent.open = true);
 
-	openSettings = () => this.dialog.MDComponent.show();
+  openSettings = () => this.dialog.MDComponent.show();
 
-	drawerRef = drawer => (this.drawer = drawer);
-	dialogRef = dialog => (this.dialog = dialog);
+  drawerRef = drawer => (this.drawer = drawer);
+  dialogRef = dialog => (this.dialog = dialog);
 
-	linkTo = path => () => {
-		route(path);
-		this.closeDrawer();
-	};
+  linkTo = path => () => {
+    route(path);
+    this.closeDrawer();
+  };
 
-	toggleDarkTheme = () => {
-		this.setState(
-			{
-				darkThemeEnabled: !this.state.darkThemeEnabled
-			},
-			() => {
-				if (this.state.darkThemeEnabled) {
-					document.body.classList.add('mdc-theme--dark');
-				}
-				else {
-					document.body.classList.remove('mdc-theme--dark');
-				}
-			}
-		);
-	}
+  toggleDarkTheme = () => {
+    this.setState(
+      {
+        darkThemeEnabled: !this.state.darkThemeEnabled
+      },
+      () => {
+        if (this.state.darkThemeEnabled) {
+          document.body.classList.add('mdc-theme--dark');
+        }
+        else {
+          document.body.classList.remove('mdc-theme--dark');
+        }
+      }
+    );
+  }
 
-	render() {
-		return (
-			<div>
-				<Toolbar className="toolbar">
-					<Toolbar.Row>
-						<Toolbar.Section align-start>
-							<Toolbar.Icon menu onClick={this.openDrawer}>
-								menu
-							</Toolbar.Icon>
-							<Toolbar.Title>RSS PReader</Toolbar.Title>
-						</Toolbar.Section>
-						<Toolbar.Section align-end onClick={this.openSettings}>
-							<Toolbar.Icon>settings</Toolbar.Icon>
-						</Toolbar.Section>
-					</Toolbar.Row>
-				</Toolbar>
-				<Drawer.TemporaryDrawer ref={this.drawerRef}>
-					<Drawer.TemporaryDrawerContent>
-						<Drawer.DrawerItem onClick={this.linkTo('/')}>
-							<List.ItemGraphic>home</List.ItemGraphic>
-							Home
-						</Drawer.DrawerItem>
-						<Drawer.DrawerItem onClick={this.linkTo('/feed_sources')}>
-							<List.ItemGraphic>rss_feed</List.ItemGraphic>
-							Feed Sources
-						</Drawer.DrawerItem>
-						<Drawer.DrawerItem onClick={this.linkTo('/cloud_backups')}>
-							<List.ItemGraphic>backup</List.ItemGraphic>
-							Cloud Backups
-						</Drawer.DrawerItem>
-					</Drawer.TemporaryDrawerContent>
-				</Drawer.TemporaryDrawer>
-				<Dialog ref={this.dialogRef}>
-					<Dialog.Header>Settings</Dialog.Header>
-					<Dialog.Body>
-						<div>
-							Enable dark theme <Switch onClick={this.toggleDarkTheme} />
-						</div>
-					</Dialog.Body>
-					<Dialog.Footer>
-						<Dialog.FooterButton accept>okay</Dialog.FooterButton>
-					</Dialog.Footer>
-				</Dialog>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <Toolbar className="toolbar">
+          <Toolbar.Row>
+            <Toolbar.Section align-start>
+              <Toolbar.Icon menu onClick={this.openDrawer}>
+                menu
+              </Toolbar.Icon>
+              <Toolbar.Title>RSS PReader</Toolbar.Title>
+            </Toolbar.Section>
+            <Toolbar.Section align-end onClick={this.openSettings}>
+              <Toolbar.Icon>settings</Toolbar.Icon>
+            </Toolbar.Section>
+          </Toolbar.Row>
+        </Toolbar>
+        <Drawer.TemporaryDrawer ref={this.drawerRef}>
+          <Drawer.TemporaryDrawerContent>
+            <Drawer.DrawerItem onClick={this.linkTo('/')}>
+              <List.ItemGraphic>home</List.ItemGraphic>
+              Home
+            </Drawer.DrawerItem>
+            <Drawer.DrawerItem onClick={this.linkTo('/feed_sources')}>
+              <List.ItemGraphic>rss_feed</List.ItemGraphic>
+              Feed Sources
+            </Drawer.DrawerItem>
+            <Drawer.DrawerItem onClick={this.linkTo('/cloud_backups')}>
+              <List.ItemGraphic>backup</List.ItemGraphic>
+              Cloud Backups
+            </Drawer.DrawerItem>
+          </Drawer.TemporaryDrawerContent>
+        </Drawer.TemporaryDrawer>
+        <Dialog ref={this.dialogRef}>
+          <Dialog.Header>Settings</Dialog.Header>
+          <Dialog.Body>
+            <div>
+              Enable dark theme <Switch onClick={this.toggleDarkTheme} />
+            </div>
+          </Dialog.Body>
+          <Dialog.Footer>
+            <Dialog.FooterButton accept>okay</Dialog.FooterButton>
+          </Dialog.Footer>
+        </Dialog>
+      </div>
+    );
+  }
 }

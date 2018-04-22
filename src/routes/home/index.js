@@ -3,19 +3,10 @@ import List from 'preact-material-components/List';
 
 export default class Home extends Component {
   componentDidMount() {
-    // # find a workaround for CORS
-    this.setState({
-      articles: [
-        {
-          title: "Title of article",
-          summary: "Short summary of the article",
-          time: new Date(),
-        }
-      ]
-    });
+    this.props.refreshArticles();
   }
 
-	render({}, {articles = []}) {
+	render({articles = []}, {}) {
 		return (
       <List>
       {articles.map((article) =>
